@@ -1,0 +1,33 @@
+##Recuperar todas las peliculas
+GET http://localhost:1234/movies
+
+###Recuperar pelicula por id
+GET http://localhost:1234/movies/dcdd0fad-a94c-4810-8acc-5f108d3b18c3
+
+###Recuperar pelicula por un genero
+GET http://localhost:1234/movies?genre=Crime
+
+###Añadir una movie
+POST http://localhost:1234/movies
+Content-Type: application/json
+
+{
+    "title": "Roberto Movie",
+    "year": 2024,
+    "director": "R atilano",
+    "duration": 142,
+    "poster": "https://i.ebayimg.com/images/g/4goAAOSwMyBe7hnQ/s-l1200.webp",
+    "genre": [
+      "Crime"
+    ],
+    "rate": 9.3
+}
+
+###Edita una parte de una movie
+PATCH http://localhost:1234/movies/dcdd0fad-a94c-4810-8acc-5f108d3b18c3
+Content-Type: application/json
+
+{
+  "title" : "Sexo Duro 2"
+}
+
