@@ -12,7 +12,7 @@ POST http://localhost:1234/movies
 Content-Type: application/json
 
 {
-    "title": "Roberto Movie",
+    "title": "Roberto Mosssssvie",
     "year": 2024,
     "director": "R atilano",
     "duration": 142,
@@ -28,6 +28,9 @@ PATCH http://localhost:1234/movies/dcdd0fad-a94c-4810-8acc-5f108d3b18c3
 Content-Type: application/json
 
 {
-  "title" : "Sexo Duro 2"
+  "title" : "Jhon wick 2"
 }
+
+###ELIMINA UNA PELICULA
+DELETE http://localhost:1234/movies/dcdd0fad-a94c-4810-8acc-5f108d3b18c3
 

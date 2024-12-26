@@ -13,7 +13,7 @@ fetch('http://localhost:1234/movies')
             </article>
             `
         }).join("")
-        document.querySelector(".culo").innerHTML = html;
+        document.querySelector(".container").innerHTML = html;
     })
 
 
