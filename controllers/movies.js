@@ -1,21 +1,24 @@
 import { validateMovie, partialValidateMovie } from "../schemas/movie.js";
-import { movieModel } from "../models/movies.js";
-export class movieController{
-    static async getAll (req, res) {
+export class MovieController{
+  constructor({movieModel}){
+    this.movieModel = movieModel; 
+  }
+
+  getAll = async (req, res) =>{
         const { genre } = req.query;
-        res.json(await movieModel.getAll({genre}));
+        res.json(await this.movieModel.getAll({genre}));
     }
 
-    static async getById (req, res){
+  getById = async (req, res) =>{
       const { id } = req.params;
-      const movie = await movieModel.getById(id);
+      const movie = await this.movieModel.getById(id);
       if(movie.error) return res.status(404).json(movie)
         res.json(movie);
     }
     
-    static async delete (req, res){
+   delete = async (req, res) =>{
         const { id } = req.params
-        const delMovie = await movieModel.delete({id});
+        const delMovie = await this.movieModel.delete({id});
         if(delMovie){
           return res.status(200).json(delMovie);
         }
@@ -24,17 +27,17 @@ export class movieController{
         });
     }
 
-    static async create (req, res){
+   create = async (req, res) =>{
           const result = validateMovie(req.body);
           if(!result.success){
             return res.status(400).json({
               message : result.error.errors
             })
           }
-          res.json(await movieModel.create(result.data));
+          res.json(await this.movieModel.create(result.data));
     }
 
-    static async update (req, res){
+   update = async (req, res) =>{
         const input = partialValidateMovie(req.body);
         const { id } = req.params;
         if(!input.success){
@@ -42,7 +45,7 @@ export class movieController{
            Error: data.error.errors
          })
         }
-        const updateMovie = await movieModel.update({id, input})
+        const updateMovie = await this.movieModel.update({id, input})
          if(!updateMovie){
            console.log(updateMovie)
            return res.status(400).json({
